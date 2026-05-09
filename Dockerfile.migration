@@ -4,6 +4,5 @@ WORKDIR /app
 
 COPY . .
 RUN npm ci
-RUN touch database/main/main.db
 
 CMD ["npx", "riao", "migration:run"]
