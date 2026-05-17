@@ -1,0 +1,1 @@
+export { PrincipalsRouter } from './router';

@@ -1,0 +1,1 @@
+export { PasswordsRouter } from './router';

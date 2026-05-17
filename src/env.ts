@@ -7,6 +7,7 @@ export class Environment extends AppConfig {
 	readonly APP_TITLE = '{{ remrg:var project-name }}';
 
 	readonly API_PORT = 9000;
+	readonly JWT_SECRET: string = 'dev-secret';
 
 	readonly MAIN_DB_HOST: string = 'postgres';
 	readonly MAIN_DB_PORT: number = 5432;

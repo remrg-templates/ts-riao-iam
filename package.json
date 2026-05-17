@@ -22,7 +22,9 @@
 		"npm": ">=10.8.2"
 	},
 	"dependencies": {
+		"@riao/authn-password": "^1.1.0",
 		"@riao/dbal": "^3.8.0",
+		"@riao/iam": "^3.3.0",
 		"@riao/postgres": "^3.5.0",
 		"@riao/rest": "^2.1.2",
 		"api-machine": "^1.2.1",
