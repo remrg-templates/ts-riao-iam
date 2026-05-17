@@ -6,7 +6,7 @@ import { AppConfig, configure } from 'ts-appconfig';
 export class TestEnvironment extends AppConfig {
 	override readonly NODE_ENV = 'test';
 
-	readonly TEST_DB_NAME: string = 'database/main/test.db';
+	readonly TEST_DB_NAME: string = 'test_db';
 }
 
 /**

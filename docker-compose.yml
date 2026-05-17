@@ -5,23 +5,51 @@ services:
       dockerfile: Dockerfile
     container_name: '{{ remrg:var project-name }}'
     depends_on:
+      postgres:
+        condition: service_healthy
       migration:
         condition: service_completed_successfully
     ports:
       - '9000:9000'
     environment:
       NODE_ENV: production
+      MAIN_DB_HOST: postgres
     volumes:
       - ./database:/app/database
+
+  postgres:
+    image: postgres:17
+    container_name: '{{ remrg:var project-name }}-db'
+    environment:
+      POSTGRES_DB: main-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d main-db']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - '5432:5432'
+    volumes:
+      - riao_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
 
   migration:
     build:
       context: .
       dockerfile: Dockerfile.migration
     container_name: '{{ remrg:var project-name }}-migration'
+    depends_on:
+      postgres:
+        condition: service_healthy
     environment:
       NODE_ENV: production
+      MAIN_DB_HOST: postgres
     command: ['npx', 'riao', 'migration:run']
     restart: 'no'
     volumes:
       - ./database:/app/database
+
+volumes:
+  riao_db_data:
