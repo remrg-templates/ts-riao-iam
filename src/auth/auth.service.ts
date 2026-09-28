@@ -1,6 +1,6 @@
 import { PasswordAuthentication } from '@riao/authn-password';
 import { Principal } from '@riao/iam/auth';
-import { Jwt } from '@riao/iam/jwt';
+import { Jwt } from '@riao/crypto';
 import { maindb } from '../../database/main';
 import { env } from '../env';
 
