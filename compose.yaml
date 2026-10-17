@@ -12,6 +12,11 @@ services:
       - '9000:9000'
     environment:
       NODE_ENV: production
+      MAIN_DB_HOST: postgres
+      MAIN_DB_PORT: 5432
+      MAIN_DB_USER: ${POSTGRES_USER}
+      MAIN_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      MAIN_DB_NAME: ${POSTGRES_DB}
 
   postgres:
     image: postgres:18
@@ -38,6 +43,11 @@ services:
         condition: service_healthy
     environment:
       NODE_ENV: production
+      MAIN_DB_HOST: postgres
+      MAIN_DB_PORT: 5432
+      MAIN_DB_USER: ${POSTGRES_USER}
+      MAIN_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      MAIN_DB_NAME: ${POSTGRES_DB}
     command: ['npx', 'riao', 'migration:run']
     restart: 'no'
 
