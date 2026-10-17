@@ -3,7 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: '{{ remrg:var project-name }}'
     depends_on:
       postgres:
         condition: service_healthy
@@ -39,13 +38,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.migration
-    container_name: '{{ remrg:var project-name }}-migration'
     depends_on:
       postgres:
         condition: service_healthy
     environment:
       NODE_ENV: production
-      MAIN_DB_HOST: postgres
     command: ['npx', 'riao', 'migration:run']
     restart: 'no'
     volumes:
