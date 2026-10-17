@@ -44,3 +44,6 @@ scratch/
 *.db
 *.db.env
 database/**/.schema
+
+# Local database backups
+postgres-backup*.dump
