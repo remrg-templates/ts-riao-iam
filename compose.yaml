@@ -3,7 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: '{{ remrg:var project-name }}'
     depends_on:
       postgres:
         condition: service_healthy
