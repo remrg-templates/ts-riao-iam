@@ -11,7 +11,7 @@ services:
     ports:
       - '9000:9000'
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       MAIN_DB_HOST: postgres
       MAIN_DB_PORT: 5432
       MAIN_DB_USER: ${POSTGRES_USER}
