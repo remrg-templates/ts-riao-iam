@@ -9,6 +9,10 @@ import { DeletePrincipalEndpoint } from './delete';
 export class PrincipalsRouter extends RiaoRouter {
 	override path = '/principals';
 	override repo = principalsRepo;
+	override authorization = {
+		action: 'manage',
+		resource: 'principals',
+	};
 
 	override async routes() {
 		return [

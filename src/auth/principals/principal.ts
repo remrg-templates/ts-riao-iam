@@ -1,6 +1,3 @@
-export interface Principal {
-	id: string;
-	login: string;
-	name: string;
-	create_timestamp: Date;
-}
+import { Principal as RiaoPrincipal } from '@riao/iam/auth';
+
+export type Principal = RiaoPrincipal;

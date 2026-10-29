@@ -2,6 +2,7 @@ import { RiaoRouter } from '@riao/rest';
 import { AuthRouter } from '@/auth/api/router';
 import { PrincipalsRouter } from '@/auth/principals/api';
 import { PasswordsRouter } from '@/auth/passwords/api';
+import { DefaultRbacAuthzRouter } from '@riao/authz-rbac';
 
 export class V1Router extends RiaoRouter {
 	override path = '/v1';
@@ -12,6 +13,7 @@ export class V1Router extends RiaoRouter {
 			AuthRouter,
 			PasswordsRouter,
 			PrincipalsRouter,
+			DefaultRbacAuthzRouter,
 		];
 	}
 }

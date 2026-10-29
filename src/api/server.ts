@@ -1,5 +1,8 @@
 import { RiaoRouter } from '@riao/rest';
-import { RestServer } from 'api-machine';
+import { BearerAuthenticationScheme, RestServer } from 'api-machine';
+import { RbacAuthorization } from '@riao/authz-rbac';
+import { maindb } from '../../database/main';
+import { checkAccessToken } from '../auth/auth.service';
 import { env } from '../env';
 import { ApiRouter } from './router';
 import { ServiceRouter } from './service';
@@ -17,9 +20,17 @@ export class Server extends RestServer {
 
 	override name = '{{ remrg:var project-name }}';
 	override description = 'Rest API Server';
+
+	public constructor(port = env.API_PORT) {
+		super({
+			port,
+			swaggerEnabled: env.NODE_ENV === 'development',
+			authentication: new BearerAuthenticationScheme({
+				checkToken: checkAccessToken,
+			}),
+			authorizer: new RbacAuthorization({ db: maindb }),
+		});
+	}
 }
 
-export const server = new Server({
-	port: env.API_PORT,
-	swaggerEnabled: env.NODE_ENV === 'development',
-});
+export const server = new Server();

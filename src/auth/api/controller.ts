@@ -4,6 +4,8 @@ import { ApiRequest, PostEndpoint, UnauthorizedError } from 'api-machine';
 
 export class LoginEndpoint extends PostEndpoint {
 	override path = '/login';
+	override authentication = null;
+	override authorization = null;
 
 	override body = new ObjectValSan({
 		schema: {
@@ -28,7 +30,6 @@ export class LoginEndpoint extends PostEndpoint {
 			userId: user.id,
 			login: user.login,
 			name: user.name,
-			role: 'admin',
 		});
 
 		return {
